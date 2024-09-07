@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .table {
+    @apply w-full table-auto text-sm border-collapse
+  }
+
+  .table-header {
+    @apply text-left font-bold
+  }
+
+  .table-header-item {
+    @apply px-3 py-3
+  }
+
+  .table-item-row {
+    @apply border-t border-gray-700
+  }
+
+  .table-item {
+    @apply whitespace-nowrap px-3 py-3 text-sm text-gray-200
+  }
+}
