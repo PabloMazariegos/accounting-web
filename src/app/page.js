@@ -1,5 +1,6 @@
 import Table from "./components/Table";
 import UploadFile from "./components/UploadFile";
+import constants from "@/constants";
 
 const purchasesHeaders = [
   { title: "Purchase", key: "purchase" },
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="mb-10 flex flex-col gap-6 lg:mb-5">
           <div>
             <span className="mb-3 block text-2xl font-bold">Sales</span>
-            <UploadFile />
+            <UploadFile fileType={constants.SALES_FILE} />
           </div>
 
           <div>
@@ -24,7 +25,7 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           <div>
             <span className="mb-3 block text-2xl font-bold">Purchases</span>
-            <UploadFile />
+            <UploadFile fileType="TEST" />
           </div>
 
           <div>

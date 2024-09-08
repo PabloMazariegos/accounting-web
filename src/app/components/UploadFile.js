@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-export default function UploadFile() {
+export default function UploadFile({ fileType }) {
   const fileInput = useRef(null);
   const [file, setFile] = useState(null);
 
@@ -10,31 +10,22 @@ export default function UploadFile() {
     fileInput.current.click();
   };
 
-  const handleUpload = ($event) => {
-    const files = $event.target.files;
+  const handleUpload = async ($event) => {
+    const file = $event.target.files[0];
 
-    if (files) {
-      setFile(files[0]);
-    }
-  };
+    setFile(file);
 
-  const ItemNameText = () => {
-    return file ? (
-      <>
-        <span className="font-semibold"> {file.name} </span>
-      </>
-    ) : (
-      <>
-        <span className="font-semibold"> Click to upload </span> or drag and
-        drop
-      </>
-    );
-  };
+    const formData = new FormData();
+    formData.append('type', fileType)
+    formData.append('file', file)
 
-  const ItemExtensionText = () => {
-    return file ? null : (
-      <p className="text-xs text-white group-hover:text-sky-500">XLS, XLSX</p>
-    );
+    const response = await fetch("/api/upload", {
+      method: 'POST',
+      body: formData
+    })
+
+    const result = await response.json()
+    console.log(result)
   };
 
   return (
@@ -46,10 +37,14 @@ export default function UploadFile() {
         >
           <div className="flex flex-col items-center justify-center">
             <p className="text-sm text-white group-hover:text-sky-500">
-              <ItemNameText />
+              <span className="font-semibold"> 
+                {file ? file.name : 'Click to upload'} 
+              </span>
             </p>
 
-            <ItemExtensionText />
+            <p className="text-xs text-white group-hover:text-sky-500">
+              { file ? '' : 'XLS, XLSX'}
+            </p>
           </div>
           <input
             ref={fileInput}
