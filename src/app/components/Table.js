@@ -1,7 +1,17 @@
 export default function Table({ headers, items = [] }) {
   const headerElements = headers.map((header, index) => (
-    <th className="table-header-item" key={index}>{header.title}</th>
+    <th className="table-header-item" key={index}>
+      {header.title}
+    </th>
   ));
+
+  const emptyResults = (
+    <tr className="table-item-row">
+      <td className="table-item text-center" colSpan={headers.length}>
+        <span className="text-xs">Empty Results</span>
+      </td>
+    </tr>
+  );
 
   const itemElements = items.map((item, itemIndex) => {
     const tableCells = headers.map((header, headerIndex) => (
@@ -10,7 +20,11 @@ export default function Table({ headers, items = [] }) {
       </td>
     ));
 
-    return <tr className="table-item-row" key={itemIndex}>{tableCells}</tr>;
+    return (
+      <tr className="table-item-row" key={itemIndex}>
+        {tableCells}
+      </tr>
+    );
   });
 
   return (
@@ -18,7 +32,7 @@ export default function Table({ headers, items = [] }) {
       <thead className="table-header">
         <tr>{headerElements}</tr>
       </thead>
-      <tbody>{itemElements}</tbody>
+      <tbody>{items.length > 0 ? itemElements : emptyResults}</tbody>
     </table>
   );
 }

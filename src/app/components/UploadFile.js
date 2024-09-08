@@ -25,13 +25,16 @@ export default function UploadFile() {
       </>
     ) : (
       <>
-        <span className="font-semibold "> Click to upload </span> or drag and drop
+        <span className="font-semibold"> Click to upload </span> or drag and
+        drop
       </>
     );
   };
 
   const ItemExtensionText = () => {
-    return file ? null : <p className="text-xs text-white group-hover:text-sky-500">XLS, XLSX</p>;
+    return file ? null : (
+      <p className="text-xs text-white group-hover:text-sky-500">XLS, XLSX</p>
+    );
   };
 
   return (
