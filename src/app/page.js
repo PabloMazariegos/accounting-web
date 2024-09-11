@@ -1,42 +1,37 @@
-import Table from "./components/Table";
-import UploadFile from "./components/UploadFile";
-import constants from "@/constants";
-
-const purchasesHeaders = [
-  { title: "Purchase", key: "purchase" },
-  { title: "Amount", key: "amount" },
-];
+import Stepper from "./components/stepper/Stepper";
 
 export default function Home() {
   return (
-    <main className="container mx-auto min-h-screen px-6 py-5">
-      <div className="grid gap-7 sm:grid-cols-1 md:grid-cols-2">
-        <div className="mb-10 flex flex-col gap-6 lg:mb-5">
-          <div>
-            <span className="mb-3 block text-2xl font-bold">Sales</span>
-            <UploadFile fileType={constants.SALES_FILE} />
-          </div>
+    <main className="container mx-auto px-4">
+      <div className="mb-5 flex h-20 items-center border-b border-gray-700">
+        <h1 className="text-3xl font-bold">Accounting web</h1>
+      </div>
 
-          <div>
-            <Table headers={purchasesHeaders} />
-          </div>
+      <div className="mb-4 flex flex-wrap gap-0 md:gap-3">
+        <div className="mb-4 w-full md:mb-0 md:w-1/4">
+          <Stepper />
         </div>
 
-        <div className="flex flex-col gap-6">
-          <div>
-            <span className="mb-3 block text-2xl font-bold">Purchases</span>
-            <UploadFile fileType="TEST" />
-          </div>
+        <div className="mb-4 w-full md:mb-0 md:w-1/2">Content</div>
+      </div>
 
-          <div>
-            <Table headers={purchasesHeaders} />
-          </div>
+      <div className="mb-4 flex flex-wrap justify-between">
+        <div className="mb-4 w-1/3 md:mb-0 md:w-1/6">
+          <button
+            type="button"
+            className="w-full rounded-lg border border-solid border-gray-200 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-300 hover:text-black"
+          >
+            Previous
+          </button>
         </div>
 
-        <div className="flex flex-col gap-6">
-          <div>
-            <span className="mb-3 block text-2xl font-bold">Summary</span>
-          </div>
+        <div className="mb-4 w-1/3 md:mb-0 md:w-1/6">
+          <button
+            type="button"
+            className="w-full rounded-lg bg-gray-200 px-5 py-2.5 text-sm font-medium text-black hover:bg-gray-300"
+          >
+            Next
+          </button>
         </div>
       </div>
     </main>
